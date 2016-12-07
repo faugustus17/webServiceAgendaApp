@@ -147,20 +147,23 @@ public class ServiceController {
 		List<Contato> contatos =  new ArrayList<Contato>();
 		 
 		List<ContatoEntidade> listaEntityContatos = repository.GetContatoNome(nome);
- 
-		for (ContatoEntidade entity : listaEntityContatos) {
- 
-			contatos.add(new Contato(entity.getIdContato(),
-			entity.getNome(),
-			entity.getApelido(),
-			entity.getDtNasc(),
-			entity.getTelefone(),
-			entity.getTipo(),
-			entity.getEmail()));
+		
+		if(listaEntityContatos != null){
+			for (ContatoEntidade entity : listaEntityContatos) {
+				 
+				contatos.add(new Contato(entity.getIdContato(),
+				entity.getNome(),
+				entity.getApelido(),
+				entity.getDtNasc(),
+				entity.getTelefone(),
+				entity.getTipo(),
+				entity.getEmail()));
+			}
+			return contatos;
+		}else{
+			return null;
 		}
- 
-		return contatos;
-	}
+ 	}
 	
  
 	/**
